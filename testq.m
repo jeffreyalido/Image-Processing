@@ -1,6 +1,9 @@
 curD = pwd;
 [filename, pathname] = uigetfile({'*.png;*.bmp;*.tiff;*.jpeg;*.*'},'Select images','MultiSelect','on');
-
+mkdir('preprocessed')
+cd('preprocessed')
+procD = pwd;
+cd ..
 if ischar(filename) % single image
     if ~exist(filename)
         cd(pathname)
@@ -72,7 +75,7 @@ else
             imshow(g)
             okB = input('filling look okay? enter y or n: ','s');
             if okB == 'y'
-                cd(pathname);
+                cd(procD);
                 imwrite(g,strcat('Pre_processed2_',filename{i}),'png');
                 break;
             end
