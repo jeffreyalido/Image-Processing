@@ -1,9 +1,10 @@
 curD = pwd;
 [filename, pathname] = uigetfile({'*.png;*.bmp;*.tiff;*.jpeg;*.*'},'Select images','MultiSelect','on');
+cd(pathname);
 mkdir('preprocessed')
 cd('preprocessed')
 procD = pwd;
-cd ..
+cd(curD);
 if ischar(filename) % single image
     if ~exist(filename)
         cd(pathname)
