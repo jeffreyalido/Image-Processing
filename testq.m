@@ -54,37 +54,42 @@ else
     end
     cd(curD);
     for i = 1 : length(filename)
-        figure('Name','with contrast','NumberTitle','off');
+        ogFig = figure('Name','with contrast','NumberTitle','off');
         imshow(imageCell{1,i});
+        figure(ogFig);
 
         while(true)
             edgeN = input('enter number between 0 and 1: ');
             e = edge(imageCell{1,i},'canny',edgeN); % 0.7 usually?
             gapN = input('enter number: ');
             f = filledgegaps(e,gapN); %15 for chec2, 5 for chec,
-            fig = figure('Name','edges','NumberTitle','off');
+            figedge = figure('Name','edges','NumberTitle','off');
             imshow(f)
+            figure(figedge);
             okA = input('look ok? enter y or n: ','s');
-            close(fig);
+            close(figedge);
             if okA == 'y' 
                 break;
             end
         end
-
+    ogFig2 = figure('Name','with contrast','NumberTitle','off');
+    imshow(imageCell{1,i});
+    figure(ogFig2);
         while(true)
             g = imfill(f);%,'holes'); % flowers uses holes
-            fig = figure('Name','final','NumberTitle','off')
+            figfinal = figure('Name','final','NumberTitle','off')
             imshow(g)
+            figure(figfinal);
             okB = input('filling look okay? enter y or n: ','s');
-            close(fig);
+            close(figfinal);
             if okB == 'y'
                 cd(procD);
                 imwrite(g,strcat('Pre_processed2_',filename{i}),'png');
                 break;
             end
         end
-        
-        cd(curD)
+    close('with contrast');
+    cd(curD)
     end
     cd(curD);
 end
