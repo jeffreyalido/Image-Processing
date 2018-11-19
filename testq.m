@@ -61,19 +61,21 @@ else
             e = edge(imageCell{1,i},'canny',edgeN); % 0.7 usually?
             gapN = input('enter number: ');
             f = filledgegaps(e,gapN); %15 for chec2, 5 for chec,
-            figure('Name','edges','NumberTitle','off')
+            fig = figure('Name','edges','NumberTitle','off');
             imshow(f)
             okA = input('look ok? enter y or n: ','s');
+            close(fig);
             if okA == 'y' 
-                break
+                break;
             end
         end
 
         while(true)
             g = imfill(f);%,'holes'); % flowers uses holes
-            figure('Name','final','NumberTitle','off')
+            fig = figure('Name','final','NumberTitle','off')
             imshow(g)
             okB = input('filling look okay? enter y or n: ','s');
+            close(fig);
             if okB == 'y'
                 cd(procD);
                 imwrite(g,strcat('Pre_processed2_',filename{i}),'png');
