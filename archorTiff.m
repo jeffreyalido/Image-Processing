@@ -23,7 +23,9 @@ for i = 1 : length(filename)
     end
     picmat = imread(filename{i});
     cd(curD);
+    figur = figure;
     imshow(picmat);
+    figure(figur);
     [x, y] = ginputc(5, 'Color', 'r', 'LineWidth', .5);
     y = round(y); x = round(x);
     %% find angle to rotate
@@ -131,7 +133,8 @@ for i = 1 : length(filename)
     elseif i == 24
         bigCanvas(1801:2400,3001:3600) = scaledImage;
     end
-    
+    close(figur);
+
 end
 imshow(bigCanvas);
 cd ..
