@@ -1,6 +1,7 @@
 curD = pwd;
 [filename, pathname] = uigetfile({'*.png;*.bmp;*.tiff;*.jpeg;*.*'},'Select images','MultiSelect','on');
 cd(pathname);
+cd ..
 mkdir('preprocessed')
 cd('preprocessed')
 procD = pwd;
