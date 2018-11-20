@@ -23,7 +23,7 @@ for i = 1 : length(filename)
     end
     picmat = imread(filename{i});
     cd(curD);
-    figur = figure;
+    figur = figure('Name',strcat(num2str(i),' out of ', num2str(length(filename))));
     imshow(picmat);
     figure(figur);
     [x, y] = ginputc(5, 'Color', 'r', 'LineWidth', .5);
